@@ -3,3 +3,8 @@
 1. cd into `client` directory.
 2. run `npm install` followed by `npm run dev` in the terminal
 3. follow the link to open the app.
+
+current client preview
+[screenshot1](stock/proto-1.jpg)
+[screenshot1](stock/proto-2.jpg)
+
