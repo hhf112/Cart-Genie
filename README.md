@@ -5,6 +5,6 @@
 3. follow the link to open the app.
 
 current client preview
-[screenshot1](stock/proto-1.jpg)
-[screenshot1](stock/proto-2.jpg)
+![screenshot1](stock/proto-1.jpg)
+![screenshot1](stock/proto-2.jpg)
 
