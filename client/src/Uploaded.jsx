@@ -1,5 +1,4 @@
-//To add, button effect for removing adding images.
-export function ContentWindow({ images, modifyImages }) {
+export function Uploaded({ images, modifyImages }) {
   function removeImage(id) {
     modifyImages
       (images.filter((_, index) => { return index != id }));

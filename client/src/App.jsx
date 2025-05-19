@@ -1,6 +1,8 @@
-import { ContentWindow } from "./ContentWindow";
+import { Uploaded } from "./Uploaded";
 import { QueryBox } from "./QueryBox";
 import { useState } from "react";
+import { Banner } from "./Banner"
+import { Content } from "./Content";
 
 function App() {
   const [images, modifyImages] = useState([]);
@@ -8,8 +10,11 @@ function App() {
 
   return (
     <div className="flex flex-col h-screen items-center justify-end">
+      <Banner />
       <div className="flex flex-col h-screen w-3/5 items-center justify-end">
-        <ContentWindow images={images} modifyImages={modifyImages} className="justify-stretch" />
+
+        <Content/>
+        <Uploaded images={images} modifyImages={modifyImages} />
         <QueryBox images={images} modifyImages={modifyImages} prompt={prompt} setPrompt={setPrompt} />
       </div>
     </div>
