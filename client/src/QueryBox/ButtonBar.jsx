@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
-export function ButtonBar({prompt, images, modifyImages}) {
+export function ButtonBar({ prompt, images, modifyImages }) {
   const ImageInputRef = useRef();
 
 
@@ -16,7 +16,7 @@ export function ButtonBar({prompt, images, modifyImages}) {
   // }, [images]);
   //
   function submitResponse() {
-    console.log(prompt); 
+    console.log(prompt);
     console.log(images);
 
   }
@@ -25,7 +25,7 @@ export function ButtonBar({prompt, images, modifyImages}) {
   return (
     <div className="flex justify-end">
 
-      <button type = "button" className="w-8 cursor-pointer h-8 mx-2" onClick={
+      <button type="button" className="w-8 cursor-pointer h-8 mx-2" onClick={
         () => {
           ImageInputRef.current.click();
         }
@@ -36,12 +36,13 @@ export function ButtonBar({prompt, images, modifyImages}) {
       <button type="button" method="POST" className="w-9 h-9 mx-1">
         <img src="icons/up-arrow.png" alt="submit"
           className="w-9 cursor-pointer h-9"
-    onClick = {submitResponse}/>
+          onClick={submitResponse}  />
+
       </button>
 
 
-      <input multiple type="file" accept="image/*" className="hidden" ref={ImageInputRef} 
-    onChange={handleImageChange} />
+      <input multiple type="file" accept="image/*" className="hidden" ref={ImageInputRef}
+        onChange={handleImageChange} />
 
     </div>
   )
