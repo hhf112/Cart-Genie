@@ -5,18 +5,14 @@ export function ImagePreview() {
   const {removeImageFromState, addImagesToState, images} = useContext(promptContext);
 
 
-  function handleImageDrop(fileArray) {
-    addImagesToState(fileArray);
-    //API call.
-  }
 
   return (
     <div className="w-full p-1  flex h-23 text-sm items-end overflow-auto" onDrop = {(e)=> {
       e.preventDefault();
-      handleImageDrop(e.dataTransfer.files);
+      addImagesToState(e.dataTransfer.files);
     }} onDragOver = {(e)=> e.preventDefault()}>
 
-      { images.map((image) => {
+      { images.map((image, key) => {
           return (
             <div  key = {image.key} className="w-20 h-20 relative mx-1">
               <img src={image.url} className=" rounded-xl w-20 h-20" />

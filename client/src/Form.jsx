@@ -5,27 +5,23 @@ import { promptContext } from './Contexts'
 
 export function Form() {
   const ImageInputRef = useRef(null);
+  const TextInputRef = useRef(null);
   const promptInfo = useRef(null);
-  const { addImagesToState, setImages, prompt, setPrompt, images } = useContext(promptContext);
+  const { addImagesToState,  images, flushImages} = useContext(promptContext);
 
   function submitPrompt() {
     const promptContent = new FormData(promptInfo.current);
-    promptContent.append("prompt", prompt);
-    promptContent.append("images", images);
+    promptContent.append("prompt", TextInputRef.current.value);
+    promptContent.append("images", images.map((img)=>  {
+      URL.revokeObjectURL(img);
+      return img.file
+    }));
 
     //API call.
-
-    for (img of images) {
-      URL.revokeObjectURL(img.url);
-    }
-    setImages([]);
-    setPrompt("");
+    flushImages();
+    TextInputRef.current.value = "";
   }
 
-  function uploadImages(fileArray) {
-    addImagesToState(fileArray);
-    // API call.
-  }
 
 
 
@@ -37,15 +33,13 @@ export function Form() {
         submitPrompt();
       }}>
 
-      <textarea className=" w-full resize-none focus:outline-none placeholder-gray-500 h-10  overflow-auto p-2 dark:text-gray-400"
-        placeholder="Try searching something..." value={prompt} onChange={(e) => {
-          setPrompt(e.target.value);
-        }}>
+      <textarea ref = {TextInputRef} className=" w-full resize-none focus:outline-none placeholder-gray-500 h-10  overflow-auto p-2 dark:text-gray-400"
+        placeholder="Try searching something...">
 
       </textarea>
 
       <input multiple type="file" accept="image/*" className="hidden" ref={ImageInputRef}
-        onChange={e => {uploadImages(e.target.files)}} />
+        onChange={e => {addImagesToState(e.target.files)}} />
 
 
   
@@ -56,9 +50,9 @@ export function Form() {
           <img src="/icons/image-.png" alt="upload images" className="w-8 h-8" />
         </button>
 
-        <button type="submit" method="POST" className="w-9 h-9 mx-1"> <img src="icons/up-arrow.png" alt="submit" className="w-9 cursor-pointer h-9" /> </button>
+        <button type="submit" className="w-9 h-9 mx-1"> <img src="icons/up-arrow.png" alt="submit" className="w-9 cursor-pointer h-9" /> </button>
       </div>
-    </form>
+    </form >
   )
 }
 

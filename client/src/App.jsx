@@ -7,6 +7,7 @@ import { ImagePreview } from './ImagePreview';
 
 
 import { promptContext } from "./Contexts";
+import { flushSync } from "react-dom";
 
 function QueryBox() {
   return (
@@ -22,19 +23,24 @@ function QueryBox() {
 
 function App() {
   const [images, setImages] = useState([]);
-  const [prompt, setPrompt] = useState("")
 
+  useEffect (()=> {
+    console.log(images);
+
+  }, [images])
   function addImagesToState(fileArray) {
     setImages(prevImages => {
-      return [...prevImages, ...Array.from(fileArray).map((file, index) => {
+      return [...prevImages, ...Array.from(fileArray).map((img) => {
         return {
-          key: crypto.randomUUID(),
-          size: file.size,
-          url: URL.createObjectURL(file)
+          file: img, 
+          url: URL.createObjectURL(img),
+          key: crypto.randomUUID()
         }
       })]
-    })
+    });
+
   }
+
 
   function removeImageFromState(removeKey) {
     setImages((images) => {
@@ -45,12 +51,16 @@ function App() {
     })
   }
 
+  function flushImages() {
+    setImages([]);
+  }
+
   return (
     <div className="flex flex-col h-screen items-center justify-end">
       <Banner />
       <div className="flex flex-col h-screen w-3/5 items-center justify-end">
         <Content />
-        <promptContext.Provider value={{ addImagesToState, removeImageFromState, images, setImages, prompt, setPrompt }}>
+        <promptContext.Provider value={{ addImagesToState, removeImageFromState, images, flushImages }}>
           <QueryBox />
         </promptContext.Provider>
       </div>
