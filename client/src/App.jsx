@@ -9,7 +9,8 @@ import { ImagePreview } from './ImagePreview';
 import { promptContext } from "./Contexts";
 import { authContext } from "./Contexts";
 
-const serverAddress = `http://localhost:3000`;
+
+const serverAddress = `http://localhost:${import.meta.env.VITE_PORT}`;
 function QueryBox() {
   return (
     <div className="   flex flex-col justify-center items-center w-full">
