@@ -7,11 +7,12 @@ import { ImagePreview } from './ImagePreview';
 
 
 import { promptContext } from "./Contexts";
-import { flushSync } from "react-dom";
+import { authContext } from "./Contexts";
 
+const serverAddress = `http://localhost:3000`;
 function QueryBox() {
   return (
-    <div className="flex flex-col justify-center items-center w-full">
+    <div className="   flex flex-col justify-center items-center w-full">
       <ImagePreview />
       <Form />
       <p className=" mt-1 mb-2 text-xs ">Upload images for better recommendations.</p>
@@ -20,24 +21,29 @@ function QueryBox() {
 }
 
 
-
 function App() {
   const [images, setImages] = useState([]);
+  const [prompt, setPrompt] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+ 
+  function resetImages() { setImages([]) }
 
-  useEffect (()=> {
-    console.log(images);
+  
+  function resetQuery() {
+    setImages([]);
+    setPrompt("");
+  }
 
-  }, [images])
+
   function addImagesToState(fileArray) {
-    setImages(prevImages => {
-      return [...prevImages, ...Array.from(fileArray).map((img) => {
-        return {
-          file: img, 
-          url: URL.createObjectURL(img),
-          key: crypto.randomUUID()
-        }
-      })]
-    });
+    const tempImages = Array.from(fileArray).map((img) => ({
+      file: img,
+      url: URL.createObjectURL(img),
+      uploaded: false,
+      key: null,
+    }));
+    setImages((prev) => [...prev, ...tempImages]);
+    return tempImages;
 
   }
 
@@ -45,24 +51,53 @@ function App() {
   function removeImageFromState(removeKey) {
     setImages((images) => {
       return images.filter(image => {
-        if (image.key == removeKey) URL.revokeObjectURL(image.url);
-        return image.key != removeKey;
+        if (image.key === removeKey) URL.revokeObjectURL(image.url);
+        return image.key !== removeKey;
       })
     })
   }
 
-  function flushImages() {
-    setImages([]);
+
+
+  async function imagesPreUpload(fileArray) {
+    const updated = addImagesToState(fileArray);
+    for (let image of updated) {
+      const imageWrapper = new FormData();
+      imageWrapper.append("ImagePrompt", image.file);
+      let response;
+      try{
+       response = await fetch(`${serverAddress}/query`, {
+        method: "POST",
+        body: imageWrapper,
+      })} catch(err) {
+        console.log(err);
+      }
+      
+      const { key } = await response.json();
+
+      setImages((prev) => {
+        return prev.map((img) => {
+          return (img.url == image.url ? {...img, key: key, uploaded: true}: img);
+        })
+      })
+    }
   }
+
+
+
+
+
 
   return (
     <div className="flex flex-col h-screen items-center justify-end">
       <Banner />
       <div className="flex flex-col h-screen w-3/5 items-center justify-end">
         <Content />
-        <promptContext.Provider value={{ addImagesToState, removeImageFromState, images, flushImages }}>
+        <authContext.Provider value = {loggedIn}>
+        <promptContext.Provider value={{ addImagesToState, removeImageFromState, images, resetQuery, prompt, setPrompt, imagesPreUpload, serverAddress }}>
           <QueryBox />
         </promptContext.Provider>
+        </authContext.Provider>
       </div>
     </div >
   );
