@@ -3,7 +3,8 @@ const cors = require("cors")
 const express = require("express");
 const multer = require("multer");
 
-const routes = require("./routes/api_routes.js");
+//routers
+const imageServer = require("./routes/imageServer.js");
 
 
 const PORT = process.env.PORT;
@@ -19,7 +20,7 @@ const upload = multer({ storage: storage });
 
 
 
-app.use("/", routes)
+app.use("/", imageServer)
 
 app.listen(PORT, () => {
   console.log(PORT);
