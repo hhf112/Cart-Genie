@@ -5,15 +5,15 @@ import { Content } from "./Content";
 import { Form } from "./Form"
 import { ImagePreview } from './ImagePreview';
 
-
 import { promptContext } from "./Contexts";
 import { authContext } from "./Contexts";
-
+import { AuthCatalogue } from "./AuthCatalogue";
 
 const serverAddress = `http://localhost:${import.meta.env.VITE_PORT}`;
+
 function QueryBox() {
   return (
-    <div className="   flex flex-col justify-center items-center w-full">
+    <div className="flex flex-col justify-center items-center w-full">
       <ImagePreview />
       <Form />
       <p className=" mt-1 mb-2 text-xs ">Upload images for better recommendations.</p>
@@ -21,20 +21,20 @@ function QueryBox() {
   );
 }
 
-
 function App() {
   const [images, setImages] = useState([]);
   const [prompt, setPrompt] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
- 
-  function resetImages() { setImages([]) }
+  const [user, setLoggedIn] = useState({
+    status: null,
+  }); //userAuth will be added soon.
 
-  
+  console.log(images);
+
+  function resetImages() { setImages([]) }
   function resetQuery() {
     setImages([]);
     setPrompt("");
   }
-
 
   function addImagesToState(fileArray) {
     const tempImages = Array.from(fileArray).map((img) => ({
@@ -48,7 +48,6 @@ function App() {
 
   }
 
-
   function removeImageFromState(removeKey) {
     setImages((images) => {
       return images.filter(image => {
@@ -58,46 +57,43 @@ function App() {
     })
   }
 
-
-
   async function imagesPreUpload(fileArray) {
     const updated = addImagesToState(fileArray);
     for (let image of updated) {
       const imageWrapper = new FormData();
       imageWrapper.append("ImagePrompt", image.file);
       let response;
-      try{
-       response = await fetch(`${serverAddress}/query`, {
-        method: "POST",
-        body: imageWrapper,
-      })} catch(err) {
+      try {
+        response = await fetch(`${serverAddress}/upload`, {
+          method: "POST",
+          body: imageWrapper,
+        })
+      } catch (err) {
         console.log(err);
       }
-      
+
       const { key } = await response.json();
+
 
       setImages((prev) => {
         return prev.map((img) => {
-          return (img.url == image.url ? {...img, key: key, uploaded: true}: img);
+          return (img.url == image.url ? { ...img, key: key, uploaded: true } : img);
         })
       })
+
     }
   }
-
-
-
-
-
 
   return (
     <div className="flex flex-col h-screen items-center justify-end">
       <Banner />
       <div className="flex flex-col h-screen w-3/5 items-center justify-end">
         <Content />
-        <authContext.Provider value = {loggedIn}>
-        <promptContext.Provider value={{ addImagesToState, removeImageFromState, images, resetQuery, prompt, setPrompt, imagesPreUpload, serverAddress }}>
-          <QueryBox />
-        </promptContext.Provider>
+        <authContext.Provider value={{ user, setLoggedIn }}>
+          <promptContext.Provider value={{ addImagesToState, removeImageFromState, images, resetQuery, prompt, setPrompt, imagesPreUpload, serverAddress }}>
+            <QueryBox />
+            {/* <AuthCatalogue/>*/}
+          </promptContext.Provider>
         </authContext.Provider>
       </div>
     </div >

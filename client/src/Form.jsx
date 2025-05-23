@@ -6,17 +6,22 @@ import { promptContext } from './Contexts'
 export function Form() {
   const promptInfo = useRef(null);
   const ImageInputRef = useRef(null);
-  const { resetQuery, setPrompt, prompt, imagesPreUpload, serverAddress } = useContext(promptContext);
+  const { resetQuery, images, setPrompt, prompt, imagesPreUpload, serverAddress } = useContext(promptContext);
 
 
   async function submitTextPrompt() {
     try {
-      resetQuery();
       const finalPrompt = prompt;
-      const req = await fetch(`${serverAddress}/text`, {
+      resetQuery();
+      const req = await fetch(`${serverAddress}/query`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ "textPrompt": finalPrompt }),
+        body: JSON.stringify({ 
+          "UserPrompt": {
+          "textPrompt" : finalPrompt,
+          "imagePrompt" : images.map(img => img.key),
+          }
+        }),
       })
     } catch (err) {
       console.log(err);

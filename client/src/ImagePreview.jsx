@@ -7,9 +7,9 @@ export function ImagePreview() {
   function serverDeleteImage(imageKey) {
     removeImageFromState(imageKey);
     fetch(`${serverAddress}/deleteImage`, {
-       method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ delete: imageKey })
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ key: imageKey })
     })
   }
 
@@ -22,7 +22,7 @@ export function ImagePreview() {
 
       {images.map((image, index) => (
         <div key={index} className="w-20 h-20 relative mx-1">
-          {!image.uploaded ? <img src="icons/uploading.gif" className = "w-20 h-20" /> : <img src={image.url} className=" rounded-xl w-20 h-20" /> }
+          {!image.uploaded ? <img src="icons/uploading.gif" className="w-20 h-20" /> : <img src={image.url} className=" rounded-xl w-20 h-20" />}
           <button className="absolute top-3 right-3 cursor-pointer" type="button"
             onClick={() => serverDeleteImage(image.key)} > <img src="icons/remove.png" className="w-3  h-3" /></button>
         </div>

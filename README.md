@@ -8,3 +8,7 @@ current client preview
 ![screenshot1](stock/proto-1.jpg)
 ![screenshot1](stock/proto-2.jpg)
 
+
+## Cloud Databases integrated: 
+1. Cloudinary for `images`
+
