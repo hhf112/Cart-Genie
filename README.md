@@ -11,4 +11,5 @@ current client preview
 
 ## Cloud Databases integrated: 
 1. Cloudinary for `images`
+2. Supabase for `postgres`
 

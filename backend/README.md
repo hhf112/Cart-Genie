@@ -1,3 +1,4 @@
 - [ ] Vercel server hosting
 - [x] Cloud image database
-- [ ] Supabase Postgres hosting
+- [x] Supabase Postgres hosting
+
