@@ -1,6 +1,8 @@
 import { useContext } from "react";
 
-import { authContext, promptContext } from "./Contexts";
+import { authContext } from "./contexts/AuthContextProvider.jsx";
+import { promptContext } from "./contexts/PromptContextProvider.jsx";
+
 import { useState } from "react";
 
 import {LoginCat} from "./LoginCat.jsx"

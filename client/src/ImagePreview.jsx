@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { promptContext } from "./Contexts";
+import { promptContext } from "./contexts/PromptContextProvider";
 
 export function ImagePreview() {
 
