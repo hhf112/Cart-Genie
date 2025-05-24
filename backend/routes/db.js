@@ -5,7 +5,7 @@ import { createUser, fetchUser } from "../controllers/db.js"
 const router = express.Router();
 
 router.post("/create_user",createUser)
-router.get("/getUser", fetchUser)
+router.get("/getUser/:email", fetchUser)
 
 
 

@@ -9,16 +9,28 @@ export const createUser = async (req, res) => {
     ])
     .select()
 
-  if (error) console.log(error);
-  else console.log(data);
+  if (error) {
+    console.log(error);
+    res.status(500).send("failed to sign up")
+  }
+  else {
+    console.log("new sign up!", data);
+    res.status(200).send("created new user")
+  }
 }
 
 export const fetchUser = async (req, res) => {
   let { data: users, error } = await supabase
     .from('users')
     .select('username')
-    .eq("email", req.body.email)
+    .eq("email", req.params.email)
 
-  if (error) console.log(error)
-  else res.json({email: data})
+  if (error) {
+    console.log(error)
+    res.status(500).send("fetch failed")
+  }
+  else {
+    console.log(users)
+    res.status(200).json({username: users})
+  }
 }

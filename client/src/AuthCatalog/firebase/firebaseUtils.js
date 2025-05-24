@@ -1,6 +1,5 @@
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onIdTokenChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-// import "dotenv/config"
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APIKEY,            // example for Vite
@@ -17,27 +16,27 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 
-export function logOut (){
+export function logOut(afterLogOut) {
   signOut(auth).then(() => {
-    // Sign-out successful.
+    afterLogOut()
   }).catch((error) => {
-  console.log(error);
+    console.log(error);
   });
 };
 
 
 
-export function createUser (email, password, dothen)  {
-   createUserWithEmailAndPassword(auth, email, password)
+export function createUser(email, password, dothen) {
+  createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-        dothen(userCredential)
+      dothen(userCredential)
     })
     .catch((error) => {
       console.log(error)
     });
 }
 
-export function existingSignIn  ( email, password, dothen) {
+export function existingSignIn(email, password, dothen) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       dothen(userCredential);
