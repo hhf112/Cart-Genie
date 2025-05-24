@@ -3,11 +3,14 @@ import { useContext, useRef } from "react";
 
 import {authContext} from "../contexts/AuthContextProvider"
 import { existingSignIn } from "./firebase/firebaseUtils.js";
+import {promptContext} from "../contexts/PromptContextProvider.jsx"
+
 
 export function Login() {
 
   const { user, login, setLogin, setUser } = useContext(authContext)
-    console.log(user);
+  const {serverAddress} = useContext(promptContext)
+
   const email = useRef(null);
   const password = useRef(null)
 
@@ -16,15 +19,22 @@ export function Login() {
   }
 
   function setPreferentialResponse(userCredential) {
-    
-    // setUser(user=> ({
-    //       status: true,
-    //       username: username.current.value,
-    //       credential: userCredential.user,
-    //       existing: true,
-    //       }))
+    let getUser;
 
-          setLogin(() => false);
+    fetch(`${serverAddress}/getUser`, {
+      method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: userCredential.email
+          })
+        }).then(res => {
+          console.log(res);
+        }
+        ).catch(err => {
+          console.log(err)
+        })
   }
   
   

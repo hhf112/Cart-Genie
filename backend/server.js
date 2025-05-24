@@ -7,7 +7,6 @@ import multer from 'multer';
 import imageServer from './routes/imageServer.js';
 import dbServer from "./routes/db.js"
 
-
 const PORT = process.env.PORT;
 const app = express();
 

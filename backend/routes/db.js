@@ -1,20 +1,11 @@
 import express from 'express';
 import { supabase } from '../db.js';
+import { createUser, fetchUser } from "../controllers/db.js"
 
 const router = express.Router();
 
-router.post("/create_user", async (req, res) => {
-  const user = req.body;
-  const { data, error } = await supabase
-    .from('users')
-    .insert([
-      { username: user.username, email: user.credential.email },
-    ])
-    .select()
-    
-    if (error) console.log(error);
-    else console.log(data);
-})
+router.post("/create_user",createUser)
+router.get("/getUser", fetchUser)
 
 
 
