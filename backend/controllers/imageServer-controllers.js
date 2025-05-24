@@ -55,6 +55,7 @@ export const deleteImage = async (req, res) => {
   }
 };
 
+// Sample response from website 
 // {
 //   "asset_id": "3515c6000a548515f1134043f9785c2f",
 //   "public_id": "gotjephlnz2jgiu20zni",
