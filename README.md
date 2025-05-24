@@ -5,11 +5,12 @@
 3. follow the link to open the app.
 
 current client preview
-![screenshot1](stock/proto-1.jpg)
-![screenshot1](stock/proto-2.jpg)
+![screenshot1](stock/proto-3.jpg)
+![screenshot1](stock/proto-4.jpg)
 
 
 ## Cloud Databases integrated: 
 1. Cloudinary for `images`
 2. Supabase for `postgres`
+3. Firebase for frontend auth
 

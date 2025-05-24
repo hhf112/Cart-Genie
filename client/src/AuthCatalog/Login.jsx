@@ -40,16 +40,17 @@ export function Login() {
 
   return (
     <div className=" fixed inset-0  bg-black/50  justify-center items-center flex">
-      <div className=" w-1/4 h-4/5 border borderbg-gray-600 shadow-2xl bg-white rounded-2xl">
+      <div className=" w-1/4 h-4/5 border borderbg-gray-600 shadow-2xl bg-white rounded-2xl relative">
         <div className="flex flex-col justify-center items-center w-full h-full relative">
 
           <div className="flex flex-col justify-center items-center grow ">
-            <p className="text-gray-950  text-2xl p-3 text-center"> Shop with Efficiency! </p>
+            <p className="text-gray-950  text-2xl p-3 text-center"> CartGenie 0.1 </p>
+            <img src="icons/mascot.jpg" alt="mascot" className="max-h-80" />
 
           </div>
 
 
-          <p className="text-xs mx-2  text-gray-600"> Welcome back to Cart Genie! </p>
+          <p className="text-xs mx-2  text-gray-600 font-semibold"> E-commerce made efficeint </p>
 
 
           <input ref={email} type="email" name="email"
