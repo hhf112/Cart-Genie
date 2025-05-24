@@ -1,14 +1,13 @@
-import { useState, useEffect } from "react";
 
 import { Banner } from "./Banner"
 import { Content } from "./Content";
 import { Form } from "./Form"
 import { ImagePreview } from './ImagePreview';
+import { AuthCatalogue } from "./AuthCatalog/AuthCatalogue";
 
 import { PromptContextProvider } from "./contexts/PromptContextProvider";
-
-import { authContext } from "./Contexts";
 import { AuthContextProvider } from "./contexts/AuthContextProvider";
+
 
 
 function QueryBox() {
@@ -32,6 +31,7 @@ function App() {
         <AuthContextProvider>
           <PromptContextProvider>
             <QueryBox />
+            <AuthCatalogue />
           </PromptContextProvider>
         </AuthContextProvider>
       </div>

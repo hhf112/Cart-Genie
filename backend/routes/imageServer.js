@@ -1,14 +1,15 @@
-const express = require("express")
-const multer = require("multer");
+import express from 'express';
+import multer from 'multer';
 
-const router = express.router()
+import { imageUpload, deleteImage } from '../controllers/imageServer-controllers.js';
+
+const router = express.Router();
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-const { imageUpload, deleteImage } = require("./controllers/imageServer-controllers.js")
+router.post('/upload', upload.single('ImagePrompt'), imageUpload);
+router.post('/deleteImage', deleteImage);
 
-app.post("/upload", upload.single("ImagePrompt"), imageUpload);
-app.post("/deleteImage", deleteImage);
+export default router;
 
-
-module.exports = router;

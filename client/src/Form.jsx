@@ -35,7 +35,7 @@ export function Form() {
       submitTextPrompt();
     }}>
 
-      <textarea name="TextPrompt" value={prompt} className=" w-full resize-none focus:outline-none placeholder-gray-500 h-10  overflow-auto p-2 dark:text-gray-400"
+      <textarea name="TextPrompt" value={prompt} className=" w-full resize-none focus:outline-none placeholder-gray-500 text-black h-10  overflow-auto p-2 dark:text-gray-400"
         placeholder="Try searching something..."
         onChange={(e) => {
           setPrompt(e.target.value);

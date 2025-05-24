@@ -1,39 +1,28 @@
 import { useContext } from "react";
 
-import { authContext } from "./contexts/AuthContextProvider.jsx";
-import { promptContext } from "./contexts/PromptContextProvider.jsx";
+import { Login } from "./Login.jsx"
+import { SignUp } from "./SignUp.jsx"
 
-import { useState } from "react";
-
-import {LoginCat} from "./LoginCat.jsx"
+import { authContext } from "../contexts/AuthContextProvider.jsx";
+import { promptContext } from "../contexts/PromptContextProvider.jsx";
 
 export function AuthCatalogue() {
-  const { user, setLoggedIn } = useContext(authContext);
+  const { user, setUser, signUp, setSignUp, login,  setLogin } = useContext(authContext);
   const { serverAddress } = useContext(promptContext);
 
 
-  const [SignUp, setSignUp] = useState(false);
-  const [Login, setLogin] = useState(false);
-
-
-
-  console.log(user)
   function LoginUser() {
-    setLogin(true)
-    //API call and login
-    // setLoggedIn({
-    //     status: true,
-    //     username: "harsh",
-    // })
+    setLogin(()=> true)
   }
-  function LogOut() {
-    setLogin(false)
 
-    //Log out.
-    setLoggedIn({
+  function LogOut() {
+    setLogin(()=> false)
+
+    setUser({
       status: false,
     })
   }
+
   return (
     <>
       <div className="fixed top-0 right-0 flex grow w-1/5 m-4 justify-center">
@@ -42,7 +31,7 @@ export function AuthCatalogue() {
             className="bg-black rounded-4xl  shadow-2xl shadow-black px-4 py-2 m-4 text-white text-lg cursor-pointer">Hello {user.username}!</button>
         ) : (
           <>
-            <button type="button" onClick={() => { }}
+            <button type="button" onClick={() => {setSignUp(true) }}
               className="bg-white rounded-4xl border-2 border-b-blacks shadow shadow-gray-700 py-2 px-4 my-4 mx-2 text-black text-lg cursor-pointer">Sign Up</button>
             <button type="button" onClick={() => { LoginUser() }}
               className="bg-black rounded-4xl  shadow-2xl shadow-black border-2 border-black py-2 px-4 my-4 mx-2 text-white text-xl cursor-pointer">Login</button>
@@ -50,7 +39,8 @@ export function AuthCatalogue() {
         )}
       </div>
 
-      {Login && <LoginCat/>}
+      {login && <Login />}
+      {signUp && <SignUp/>}
     </>
   )
 

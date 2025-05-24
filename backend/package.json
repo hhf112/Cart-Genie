@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@supabase/supabase-js": "^2.49.8",
     "cloudinary": "^2.6.1",
     "cors": "^2.8.5",
     "cros": "^1.1.0",
@@ -9,5 +10,6 @@
     "multer": "^2.0.0",
     "pg": "^8.16.0",
     "pgvector": "^0.2.1"
-  }
+  },
+  "type": "module"
 }
