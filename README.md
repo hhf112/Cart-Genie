@@ -1,3 +1,8 @@
+deployed: 
+frontend: https://cart-genie.vercel.app/ `Vercel`
+backend: https://cart-genie-production.up.railway.app/ `Railway`
+
+
 # Client
 ## Run
 1. cd into `client` directory.

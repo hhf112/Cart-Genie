@@ -9,10 +9,11 @@
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.0.0",
     "pg": "^8.16.0",
-    "pgvector": "^0.2.1"
+    "pgvector": "^0.2.1",
+    "replicate": "^1.0.1"
   },
   "type": "module",
   "scripts": {
-    "start" : "node server.js"
+    "start": "node server.js"
   }
 }
