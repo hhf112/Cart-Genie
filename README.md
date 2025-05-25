@@ -1,4 +1,4 @@
-this was an incomplete demo client attempt for the 7-day prep Appian AI hackathon Round-2 hosted exclusively within IIT Madras. Whilst being a somewhat working prototype, our team failed to establish the Agentic-AI workflow interface for the proposed theme which acted as an externality regardless.
+this was an incomplete demo client attempt for the 7-day prep Appian AI hackathon Round-2 hosted exclusively within IIT Madras. Whilst being a somewhat working prototype, our team failed to establish the Agentic-AI workflow interface for the proposed theme which acted as an externality of time regardless.
 
 
 # deployed: 
