@@ -11,7 +11,10 @@ export function AuthContextProvider({ children }) {
     status: null,
   }); 
   const [signUp, setSignUp] = useState(false);
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState("false");
+
+ 
+
   
 
   return (

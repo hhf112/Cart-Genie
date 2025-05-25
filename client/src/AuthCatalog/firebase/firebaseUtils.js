@@ -42,6 +42,7 @@ export function existingSignIn(email, password, dothen) {
       dothen(userCredential);
     })
     .catch((error) => {
+      
       console.log(error);
     });
 }

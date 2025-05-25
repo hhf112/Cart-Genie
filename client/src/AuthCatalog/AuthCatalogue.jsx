@@ -9,16 +9,17 @@ import { promptContext } from "../contexts/PromptContextProvider.jsx";
 import { logOut } from "./firebase/firebaseUtils.js";
 
 export function AuthCatalogue() {
+  
   const { user, setUser, signUp, setSignUp, login, setLogin} = useContext(authContext);
   const { serverAddress } = useContext(promptContext);
 
-
+console.log(login);
   function LoginUser() {
-    setLogin(() => true)
+    setLogin((prev) => "true")
   }
 
   function afterLogOut() {
-    setLogin(() => false)
+    setLogin((prev) => "false")
 
     setUser({
       status: null,
@@ -41,7 +42,7 @@ export function AuthCatalogue() {
         )}
       </div>
 
-      {login && <Login />}
+      {login !==  "false" && <Login />}
       {signUp && <SignUp />}
     </>
   )
