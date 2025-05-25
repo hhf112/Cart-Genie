@@ -1,4 +1,4 @@
-this was an incomplete demo client attempt for the Appian AI hackathon hosted exclusively within IIT Madras. Whilst being a somewhat working prototype, our team failed to establish the Agentic-ai backend for the proposed theme which acted as an externality regardless.
+this was an incomplete demo client attempt for the Appian AI hackathon hosted exclusively within IIT Madras. Whilst being a somewhat working prototype, our team failed to establish the Agentic-AI workflow interface for the proposed theme which acted as an externality regardless.
 
 # deployed: 
 - frontend: https://cart-genie.vercel.app/ `Vercel`
