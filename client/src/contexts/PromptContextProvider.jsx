@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import { useState } from "react";
 
-const serverAddress = `http://localhost:${import.meta.env.VITE_PORT}`;
+const serverAddress = `cart-genie-production.up.railway.app`;
 
 export const promptContext = createContext();
 
