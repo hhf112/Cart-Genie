@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import { useState } from "react";
 
-const serverAddress = import.meta.VITE_SERVER;
+export const serverAddress = import.meta.env.VITE_SERVER;
 
 export const promptContext = createContext();
 
