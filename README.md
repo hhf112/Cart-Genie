@@ -1,6 +1,6 @@
 deployed: 
-frontend: https://cart-genie.vercel.app/ `Vercel`
-backend: https://cart-genie-production.up.railway.app/ `Railway`
+- frontend: https://cart-genie.vercel.app/ `Vercel`
+- backend: https://cart-genie-production.up.railway.app/ `Railway`
 
 
 # Client
