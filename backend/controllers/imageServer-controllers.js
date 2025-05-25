@@ -1,6 +1,6 @@
 import { response } from 'express';
 import cloudinary from '../cloudinary.js';
-import {supabase} from "../db.js"
+import { supabase } from "../db.js"
 
 export const imageUpload = async (req, res) => {
   try {
@@ -18,20 +18,21 @@ export const imageUpload = async (req, res) => {
       uploadStream.end(fileBuffer);
     });
 
-  
+
 
     if (result) {
-        const { data, error } = await supabase
-  .from('image_uploads')
-  .insert([
-    { id: result.public_id, 
-      url: result.url,
-    },
-  ])
-  .select()
+      const { data, error } = await supabase
+        .from('image_uploads')
+        .insert([
+          {
+            id: result.public_id,
+            url: result.url,
+          },
+        ])
+        .select()
 
-   if (error) console.log(error);
-  else console.log(data);
+      if (error) console.log(error);
+      else console.log(data);
 
       res.status(200).json({ key: result.public_id });
     }
