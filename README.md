@@ -19,6 +19,6 @@ current client preview
 
 ## Cloud Databases integrated: 
 1. Cloudinary for `images`
-2. Supabase for `postgres`
+2. Supabase for `postgres` and `pgvector` integration
 3. Firebase for frontend auth
 
