@@ -13,7 +13,6 @@ export function AuthCatalogue() {
   const { user, setUser, signUp, setSignUp, login, setLogin} = useContext(authContext);
   const { serverAddress } = useContext(promptContext);
 
-console.log(login);
   function LoginUser() {
     setLogin((prev) => "true")
   }

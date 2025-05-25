@@ -7,7 +7,6 @@ import { signInWithEmailAndPassword} from "firebase/auth";
 import { auth } from "./firebase/firebaseUtils.js";
 
 export function Login() {
-
   const { user, login, setLogin, setUser } = useContext(authContext)
   const { serverAddress } = useContext(promptContext)
 
