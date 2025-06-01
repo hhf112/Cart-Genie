@@ -13,3 +13,9 @@ currently undergoing changes.
 - [x] Firebase for frontend auth
 - [ ] Google AI cloud for `openAI CLIP` API
 
+## frontend:
+React.js
+
+## backend: 
+Express.js
+
