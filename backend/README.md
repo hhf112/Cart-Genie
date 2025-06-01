@@ -1,5 +1,4 @@
-- [ ] Paypal mock payment
-- [ ] Vercel server hosting
+- [ ] AI api backend
 - [x] Cloud image database
 - [x] Supabase Postgres hosting
 

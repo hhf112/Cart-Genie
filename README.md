@@ -1,24 +1,15 @@
-this was an incomplete demo client attempt for the 7-day prep Appian AI hackathon Round-2 hosted exclusively within IIT Madras. Whilst having the potential of being a somewhat working prototype, our team failed to establish the Agentic-AI workflow interface for the proposed theme which acted as an externality of time regardless.
+Work in progress. To be continued soon.
 
+## Deplyoment considerations: 
+- frontend: `Vercel` (currently removed)
+- backend: `Railway` (currently removed)
 
-# deployed: 
-- frontend: https://cart-genie.vercel.app/ `Vercel`
-- backend: https://cart-genie-production.up.railway.app/ `Railway`
-
-
-# Client
-## Run
-1. cd into `client` directory.
-2. run `npm install` followed by `npm run dev` in the terminal
-3. follow the link to open the app.
-
-current client preview
-![screenshot1](stock/proto-3.jpg)
-![screenshot1](stock/proto-4.jpg)
-
+## Client preview
+currently undergoing changes.
 
 ## Cloud Databases integrated: 
-1. Cloudinary for `images`
-2. Supabase for `postgres` and `pgvector` integration
-3. Firebase for frontend auth
+- [x] Cloudinary for `images`
+- [x] Supabase for `postgres` and `pgvector` integration 
+- [x] Firebase for frontend auth
+- [ ] Google AI cloud for `openAI CLIP` API
 
