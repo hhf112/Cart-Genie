@@ -1,4 +1,4 @@
-Work in progress. To be continued soon.
+This repo has been moved to https://github.com/hhf112/cart-genie-0.1.git
 
 ## Deplyoment considerations: 
 - frontend: `Vercel` (currently removed)
