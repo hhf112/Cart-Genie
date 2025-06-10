@@ -1,21 +1,2 @@
 This repo has been moved to https://github.com/hhf112/cart-genie-0.1.git
 
-## Deplyoment considerations: 
-- frontend: `Vercel` (removed)
-- backend: `Railway` (removed)
-
-## Client preview
-currently undergoing changes.
-
-## Cloud Databases integrated: 
-- [x] Cloudinary for `images`
-- [x] Supabase for `postgres` and `pgvector` integration 
-- [x] Firebase for frontend auth
-- [ ] Google AI cloud for `openAI CLIP` API
-
-## frontend:
-React.js
-
-## backend: 
-Express.js
-
